@@ -4,99 +4,902 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>H.M.F.A Memorial School - Handia, Prayagraj</title>
-<link rel="stylesheet" href="style.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #c41e3a;
+  --primary-dark: #8b1428;
+  --secondary: #2c3e50;
+  --accent: #f39c12;
+  --light-bg: #f8f9fa;
+  --text: #333;
+  --text-light: #666;
+  --white: #fff;
+  --shadow: 0 5px 20px rgba(0,0,0,0.1);
+  --shadow-hover: 0 15px 40px rgba(196,30,58,0.25);
+  --radius: 12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== ANNOUNCEMENT TICKER ===== */
+.ticker-wrap {
+  background: var(--primary-dark);
+  color: white;
+  padding: 8px 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.ticker-label {
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ticker-content {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+  padding-left: 2rem;
+  font-size: 0.85rem;
+}
+.ticker-content span { margin-right: 4rem; }
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.school-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.logo-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.logo-text span {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  display: block;
+  letter-spacing: 0.5px;
+}
+
+/* NAV */
+nav ul {
+  display: flex;
+  gap: 0.2rem;
+  list-style: none;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+nav a:hover { background: rgba(255,255,255,0.15); }
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px;
+}
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 520px;
+  background: linear-gradient(135deg, rgba(196,30,58,0.92), rgba(139,20,40,0.92)),
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,255,255,0.08)"/></svg>');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: white;
+  color: var(--primary);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+.btn-outline {
+  background: transparent;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid rgba(255,255,255,0.6);
+  transition: 0.3s;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+/* HERO WAVE */
+.hero-wave {
+  position: absolute;
+  bottom: -1px; left: 0; width: 100%;
+  overflow: hidden; line-height: 0;
+}
+.hero-wave svg { display: block; width: 100%; height: 50px; }
+
+/* ===== STATS ===== */
+.stats-section {
+  background: white;
+  padding: 3rem 2rem;
+}
+.stats-grid {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+.stat-item { padding: 1.5rem; }
+.stat-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-divider {
+  width: 40px; height: 3px;
+  background: var(--primary);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+/* ===== SECTION COMMON ===== */
+.container { max-width: 1200px; margin: auto; padding: 4.5rem 2rem; }
+.section-title {
+  text-align: center;
+  font-size: 2.3rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+.section-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+.section-line {
+  width: 60px; height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  margin: 0.8rem auto 2.5rem;
+  border-radius: 2px;
+}
+
+/* ===== ABOUT ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.about-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--primary);
+  transition: 0.3s;
+}
+.about-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+.about-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.about-card h3 { color: var(--primary); margin-bottom: 0.75rem; font-size: 1.2rem; }
+.about-card p { color: var(--text-light); font-size: 0.95rem; }
+
+/* ===== FEATURES / WHY US ===== */
+.features-section { background: var(--light-bg); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.feature-card {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: 0.3s;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.feature-icon-box {
+  width: 50px; height: 50px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.feature-text h4 { font-size: 1rem; margin-bottom: 0.3rem; color: var(--secondary); }
+.feature-text p { font-size: 0.85rem; color: var(--text-light); }
+
+/* ===== LEADERSHIP ===== */
+.leadership-section { background: white; }
+.leadership-container { max-width: 1100px; margin: auto; padding: 4.5rem 2rem; text-align: center; }
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.5rem;
+  margin-top: 1rem;
+}
+.leader-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow);
+  transition: 0.3s;
+  border: 1px solid rgba(196,30,58,0.08);
+}
+.leader-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.leader-card img {
+  width: 150px; height: 150px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 5px solid var(--primary);
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+.leader-role {
+  background: var(--primary);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8rem;
+}
+.leader-card h4 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+.leader-card p { font-style: italic; color: var(--text-light); margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.6; }
+.phone { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+
+/* ===== ADMISSION BANNER ===== */
+.admission-banner {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.admission-banner h2 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 800; }
+.admission-banner p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.admission-banner .btn-primary { background: white; color: var(--primary); display: inline-block; }
+
+/* ===== GALLERY ===== */
+.gallery-section { background: var(--light-bg); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.gallery-item {
+  background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
+  border-radius: 10px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--primary);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #999;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  border: 2px dashed #ddd;
+}
+.gallery-item:hover { transform: scale(1.02); border-color: var(--primary); }
+.gallery-item span { font-size: 2rem; display: block; margin-bottom: 0.3rem; }
+.gallery-placeholder { color: #bbb; font-size: 0.8rem; }
+
+/* ===== CONTACT ===== */
+.contact-section { background: white; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.contact-card {
+  background: var(--light-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 3px solid var(--primary);
+}
+.contact-card .icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+.contact-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+.contact-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+/* Map placeholder */
+.map-placeholder {
+  background: #e8eaf0;
+  border-radius: var(--radius);
+  padding: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  border: 2px dashed #ccc;
+  color: #999;
+}
+.map-placeholder span { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--secondary);
+  color: white;
+}
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.footer-col h4 { color: var(--accent); margin-bottom: 1rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-col p, .footer-col a { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 2; text-decoration: none; display: block; }
+.footer-col a:hover { color: white; }
+.footer-bottom {
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ===== BACK TO TOP ===== */
+#backToTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary);
+  color: white;
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(196,30,58,0.4);
+  transition: 0.3s;
+  display: none;
+  z-index: 999;
+}
+#backToTop:hover { transform: translateY(-3px); }
+#backToTop.visible { display: block; }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  /* Hamburger menu */
+  .hamburger { display: flex; }
+  nav {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--primary-dark);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+  }
+  nav.open { max-height: 400px; padding: 1rem 0; }
+  nav ul { flex-direction: column; gap: 0; padding: 0 1.5rem; }
+  nav a { display: block; padding: 0.75rem 1rem; border-radius: 8px; }
+
+  header { position: relative; }
+  .header-content { position: relative; }
+
+  .hero h1 { font-size: 1.9rem; }
+  .hero p { font-size: 1rem; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section-title { font-size: 1.8rem; }
+
+  .leadership-grid { grid-template-columns: 1fr; }
+
+  .admission-banner h2 { font-size: 1.6rem; }
+
+  .footer-content { grid-template-columns: 1fr; }
+
+  .ticker-content { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .header-content { padding: 0.8rem 1rem; }
+  .logo-text h1 { font-size: 1rem; }
+  .logo-text span { display: none; }
+  .school-logo { width: 42px; height: 42px; }
+  .hero { min-height: 420px; }
+  .hero h1 { font-size: 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .stat-number { font-size: 2.2rem; }
+  .container { padding: 3rem 1rem; }
+  .leader-card { padding: 2rem 1.2rem; }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<!-- ANNOUNCEMENT TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">📢 News</div>
+  <div class="ticker-content">
+    <span>🎉 Admissions Open 2026-27 — Apply Now!</span>
+    <span>📅 Annual Sports Day: March 15, 2026</span>
+    <span>🏆 Our students secured top positions in district olympiad</span>
+    <span>📝 Parent-Teacher Meeting: March 10, 2026</span>
+    <span>🌟 New computer lab inaugurated this session</span>
+    <span>🎉 Admissions Open 2026-27 — Apply Now!</span>
+    <span>📅 Annual Sports Day: March 15, 2026</span>
+    <span>🏆 Our students secured top positions in district olympiad</span>
+    <span>📝 Parent-Teacher Meeting: March 10, 2026</span>
+    <span>🌟 New computer lab inaugurated this session</span>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header>
   <div class="header-content">
-
-    <div class="logo-section"> 
-    <img src="images/hmfa_logo.jpeg" alt="School Logo" class="school-logo">
-      <h1 class="school-title">H.M.F.A Memorial School</h1>
+    <div class="logo-section">
+      <img src="hmfa_logo-removebg-preview.png" alt="School Logo" class="school-logo">
+      <div class="logo-text">
+        <h1>H.M.F.A Memorial School</h1>
+        <span>Handia, Prayagraj, U.P.</span>
+      </div>
     </div>
 
-    <nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="mainNav">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#features">Why Us</a></li>
         <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
   </div>
 </header>
-</header>
 
+<!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>Welcome to H.M.F.A Memorial School</h1>
-    <p>Shaping Tomorrow's Leaders Today</p>
+  <div class="hero-content">
+    <div class="hero-badge">Est. Handia, Prayagraj</div>
+    <h1>Welcome to<br>H.M.F.A Memorial School</h1>
+    <p>Shaping Tomorrow's Leaders with Knowledge, Discipline & Excellence</p>
+    <div class="hero-buttons">
+      <a href="#about" class="btn-primary">Explore School</a>
+      <a href="#contact" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1200 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C300,60 900,0 1200,30 L1200,50 L0,50 Z" fill="white"/>
+    </svg>
   </div>
 </section>
 
-<section id="about" class="container">
+<!-- STATS -->
+<section class="stats-section fade-in">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-number" data-target="500">0</span>
+      <div class="stat-label">Students</div>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="30">0</span>
+      <div class="stat-label">Teachers</div>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="20">0</span>
+      <div class="stat-label">Years of Trust</div>
+      <div class="stat-divider"></div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" data-target="95">0</span>
+      <div class="stat-label">Result %</div>
+      <div class="stat-divider"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container fade-in">
   <h2 class="section-title">About Our School</h2>
   <p class="section-subtitle">Building a foundation for lifelong learning</p>
-
+  <div class="section-line"></div>
   <div class="about-grid">
     <div class="about-card">
+      <span class="about-icon">🔭</span>
       <h3>Our Vision</h3>
-      <p>To provide quality education that empowers students to become responsible and creative individuals.</p>
+      <p>To provide quality education that empowers students to become responsible, creative and compassionate individuals ready for the future.</p>
     </div>
     <div class="about-card">
+      <span class="about-icon">🎯</span>
       <h3>Our Mission</h3>
-      <p>To create a nurturing environment fostering academic excellence and character development.</p>
+      <p>To create a nurturing environment fostering academic excellence, character development and holistic growth of every child.</p>
     </div>
     <div class="about-card">
+      <span class="about-icon">💎</span>
       <h3>Our Values</h3>
-      <p>Integrity, Discipline, Hard Work and Excellence guide everything we do.</p>
+      <p>Integrity, Discipline, Hard Work and Excellence guide everything we do — inside and outside the classroom.</p>
     </div>
   </div>
 </section>
 
+<!-- WHY CHOOSE US -->
+<section id="features" class="features-section">
+  <div class="container fade-in">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <p class="section-subtitle">What makes H.M.F.A Memorial School special</p>
+    <div class="section-line"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-box">📚</div>
+        <div class="feature-text">
+          <h4>Strong Academics</h4>
+          <p>Structured curriculum with focus on conceptual clarity and exam preparation.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-box">💻</div>
+        <div class="feature-text">
+          <h4>Modern Computer Lab</h4>
+          <p>Fully equipped computer lab with internet access for digital learning.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-box">🏃</div>
+        <div class="feature-text">
+          <h4>Sports & Activities</h4>
+          <p>Cricket, kabaddi, athletics and cultural activities for all-round development.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-box">👨‍🏫</div>
+        <div class="feature-text">
+          <h4>Experienced Faculty</h4>
+          <p>Dedicated and qualified teachers committed to every student's success.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-box">🛡️</div>
+        <div class="feature-text">
+          <h4>Safe Environment</h4>
+          <p>Safe, secure and disciplined campus with caring staff supervision.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-box">🌱</div>
+        <div class="feature-text">
+          <h4>Character Building</h4>
+          <p>Moral values, respect and leadership qualities instilled from early years.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
 <section id="leadership" class="leadership-section">
-  <div class="leadership-container">
+  <div class="leadership-container fade-in">
     <h2 class="section-title">Our Leadership</h2>
-    <p class="section-subtitle">Guiding the institution with dedication</p>
-
+    <p class="section-subtitle">Guiding the institution with dedication and vision</p>
+    <div class="section-line"></div>
     <div class="leadership-grid">
-
       <div class="leader-card">
-       <img src="images/Principal_img.jpeg" alt="Principal">
-        <h3>Principal</h3>
+        <img src="WhatsApp Image 2026-02-28 at 19.48.54.jpeg" alt="Principal Kamala Shankar Yadav">
+        <div class="leader-role">Principal</div>
         <h4>Kamala Shankar Yadav</h4>
         <p>"We believe that discipline creates a strong foundation, hard work turns dreams into reality, and excellence becomes a lifelong habit. Our mission is to nurture young minds with dedication, integrity, and knowledge so they grow into confident, capable, and compassionate individuals."</p>
         <div class="phone">📞 9307018077</div>
       </div>
-
       <div class="leader-card">
-      <img src="images/Vice_Principal_img.jpeg" alt="Vice Principal">
-        <h3>Vice Principal</h3>
+        <img src="WhatsApp Image 2026-02-28 at 19.48.55.jpeg" alt="Vice Principal Sandeep Singh">
+        <div class="leader-role">Vice Principal</div>
         <h4>Sandeep Singh</h4>
-        <p>"Together we build a bright future by inspiring young minds to think boldly, learn passionately, and act responsibly. Through teamwork, perseverance, and shared vision, we prepare our students not just for examinations, but for life’s greater challenges and opportunities."</p>
+        <p>"Together we build a bright future by inspiring young minds to think boldly, learn passionately, and act responsibly. Through teamwork, perseverance, and shared vision, we prepare our students not just for examinations, but for life's greater challenges and opportunities."</p>
         <div class="phone">📞 8934014896</div>
       </div>
-
     </div>
   </div>
 </section>
 
-<section id="contact" class="container">
-  <h2 class="section-title">Contact Us</h2>
-  <p class="contact-info">
-    📍 Handia, Prayagraj, Uttar Pradesh 221503 <br>
-    📞 School Office: +91 XXXXX XXXXX <br>
-    ✉ info@hmfamemorial.edu.in
-  </p>
+<!-- ADMISSION BANNER -->
+<section class="admission-banner fade-in">
+  <h2>🎓 Admissions Open 2026–27</h2>
+  <p>Enroll your child today and give them the best start in life. Limited seats available!</p>
+  <a href="#contact" class="btn-primary">Apply Now →</a>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="container fade-in">
+    <h2 class="section-title">School Gallery</h2>
+    <p class="section-subtitle">Glimpses of life at H.M.F.A Memorial School</p>
+    <div class="section-line"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><span>🏫</span><div class="gallery-placeholder">School Building</div></div>
+      <div class="gallery-item"><span>📚</span><div class="gallery-placeholder">Library</div></div>
+      <div class="gallery-item"><span>💻</span><div class="gallery-placeholder">Computer Lab</div></div>
+      <div class="gallery-item"><span>🏆</span><div class="gallery-placeholder">Prize Ceremony</div></div>
+      <div class="gallery-item"><span>🎭</span><div class="gallery-placeholder">Annual Function</div></div>
+      <div class="gallery-item"><span>⚽</span><div class="gallery-placeholder">Sports Day</div></div>
+    </div>
+    <p style="text-align:center; color:#999; margin-top:1.2rem; font-size:0.85rem;">
+      📷 Add your school photos by replacing the placeholder cards above
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container fade-in">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">We'd love to hear from you</p>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="icon">📍</span>
+        <h4>Address</h4>
+        <p>Handia, Prayagraj<br>Uttar Pradesh – 221503</p>
+      </div>
+      <div class="contact-card">
+        <span class="icon">📞</span>
+        <h4>Phone</h4>
+        <p>Principal: 9307018077<br>Vice Principal: 8934014896<br>Office: +91 XXXXX XXXXX</p>
+      </div>
+      <div class="contact-card">
+        <span class="icon">✉️</span>
+        <h4>Email</h4>
+        <p>info@hmfamemorial.edu.in<br>admissions@hmfamemorial.edu.in</p>
+      </div>
+      <div class="contact-card">
+        <span class="icon">🕐</span>
+        <h4>School Hours</h4>
+        <p>Monday – Saturday<br>8:00 AM – 2:00 PM<br>Office: 8:00 AM – 4:00 PM</p>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <span>🗺️</span>
+      <p>Handia, Prayagraj, Uttar Pradesh – 221503</p>
+      <p style="font-size:0.8rem; margin-top:0.4rem;">Embed Google Maps iframe here for live location</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© 2025 H.M.F.A Memorial School | All Rights Reserved</p>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4>H.M.F.A Memorial School</h4>
+      <p>Shaping tomorrow's leaders with quality education, discipline, and values since our founding in Handia, Prayagraj.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Academic</h4>
+      <a href="#">Admissions</a>
+      <a href="#">Curriculum</a>
+      <a href="#">Results</a>
+      <a href="#">Events</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📍 Handia, Prayagraj, UP 221503</p>
+      <p>📞 9307018077</p>
+      <p>✉️ info@hmfamemorial.edu.in</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 H.M.F.A Memorial School, Handia, Prayagraj | All Rights Reserved
+  </div>
 </footer>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" title="Back to top">↑</button>
+
+<script>
+// Hamburger Menu
+const hamburger = document.getElementById('hamburgerBtn');
+const nav = document.getElementById('mainNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  nav.classList.toggle('open');
+});
+// Close nav on link click
+nav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    nav.classList.remove('open');
+  });
+});
+
+// Back to top
+const backBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backBtn.classList.toggle('visible', window.scrollY > 400);
+});
+backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Scroll animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Counter animation
+function animateCount(el) {
+  const target = +el.dataset.target;
+  const duration = 1800;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current) + (el.dataset.target === '95' ? '%' : '+');
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.stat-number').forEach(animateCount);
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+const statsSection = document.querySelector('.stats-section');
+if (statsSection) statsObserver.observe(statsSection);
+</script>
 
 </body>
 </html>
