@@ -9,33 +9,13 @@ body {
   line-height: 1.6;
   color: #333;
 }
-/* Logo Section */
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
 
-.school-logo {
-    width: 55px;
-    height: 55px;
-    object-fit: contain;
-    border-radius: 50%;
-    background: white;
-    padding: 5px;
-}
+/* ================= HEADER ================= */
 
-/* Header Title */
-.logo-section h1 {
-    font-size: 1.5rem;
-    color: white;
-}
-
-/* ===== HEADER ===== */
 header {
   background: linear-gradient(135deg, #c41e3a, #8b1428);
   color: white;
-  padding: 1rem 0;
+  padding: 0.4rem 0;   /* Slim Header */
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -44,20 +24,38 @@ header {
 .header-content {
   max-width: 1200px;
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+/* Logo Section */
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.school-logo {
+  width: 45px;   /* Reduced size */
+  height: 45px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+}
+
+.logo-section h1 {
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 600;
+}
+
+/* Navbar */
 nav ul {
   display: flex;
-  gap: 2rem;
+  gap: 1.2rem;   /* Reduced gap */
   list-style: none;
 }
 
@@ -65,163 +63,207 @@ nav a {
   color: white;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.95rem;
+  transition: 0.3s;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #ffdede;
 }
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
+
 .hero {
-  height: 500px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #c41e3a;
+  height: 420px;   /* Reduced height */
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), #c41e3a;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
+  padding: 1rem;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.8rem;
+  margin-bottom: 0.8rem;
 }
 
-/* ===== COMMON ===== */
+.hero p {
+  font-size: 1.1rem;
+}
+
+/* ================= COMMON ================= */
+
 .container {
   max-width: 1200px;
   margin: auto;
-  padding: 4rem 2rem;
+  padding: 3.5rem 1.5rem;
 }
 
 .section-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #c41e3a;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .section-subtitle {
   text-align: center;
   color: #666;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
-/* ===== ABOUT ===== */
+/* ================= ABOUT ================= */
+
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
 }
 
 .about-card {
   background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.8rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
 }
 
 .about-card h3 {
   color: #c41e3a;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
-/* ===== LEADERSHIP ===== */
+/* ================= LEADERSHIP ================= */
 
-/* Leadership Section */
 .leadership-section {
-    background: #f4f6f9;
-    padding: 5rem 2rem;
+  background: #f4f6f9;
+  padding: 4rem 1.5rem;
 }
 
 .leadership-container {
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
 }
 
 .leadership-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .leader-card {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-    text-align: center;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  text-align: center;
 }
 
 .leader-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(196,30,58,0.25);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(196,30,58,0.25);
 }
 
-/* FIXED IMAGE STYLE */
 .leader-card img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    object-position: center top;
-    border-radius: 50%;
-    border: 6px solid #c41e3a;
-    margin-bottom: 1.5rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 5px solid #c41e3a;
+  margin-bottom: 1.2rem;
 }
 
 .leader-card h3 {
-    color: #c41e3a;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+  color: #c41e3a;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
 }
 
 .leader-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-    font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
 }
 
 .leader-card p {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 0.8rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 0.7rem;
+  font-size: 0.95rem;
 }
 
 .leader-card .phone {
-    font-weight: bold;
-    font-size: 1rem;
+  font-weight: bold;
+  font-size: 0.95rem;
 }
 
-/* ===== CONTACT ===== */
+/* ================= CONTACT ================= */
+
 .contact-info {
   text-align: center;
-  line-height: 2.2;
-  font-size: 1.05rem;
+  line-height: 2;
+  font-size: 1rem;
 }
 
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
+
 footer {
   background: #2c3e50;
   color: white;
   text-align: center;
-  padding: 2rem;
-  margin-top: 3rem;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ================= MOBILE RESPONSIVE ================= */
+
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
+
+  .header-content {
+    flex-direction: column;
+    gap: 0.6rem;
   }
 
   nav ul {
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .logo-section h1 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .hero {
+    height: 320px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .leader-card img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .container {
+    padding: 3rem 1rem;
   }
 }
